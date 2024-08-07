@@ -1,14 +1,16 @@
-export const unfinishedListItems = [
+export let startNextId = 0;
+
+export const startingUnfinishedListItems = [
   { id: '1', text: 'Learn React', completed: false },
-  { id: '3', text: 'Profit!', completed: false }
+  { id: '2', text: 'Profit!', completed: false }
 ];
 
-export var completedListItems = [
-  { id: '2', text: 'Build a To-Do App'},
-  { id: '4', text: 'pee pee poo poo!' },
-  { id: '5', text: 'pee pee poo poo!' }
+export var startingCompletedListItems = [
+  { id: '4', text: 'Build a To-Do App'},
+  { id: '5', text: 'pee pee poo poo!' },
+  { id: '6', text: 'pee pee poo poo!' }
 ];
-
+startNextId = 7;
 export const sidebarItems = [
   {id: '1', text: 'Inbox'},
   {id: '2', text: 'Today'},
