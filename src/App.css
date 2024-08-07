@@ -1,0 +1,54 @@
+*{
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: row;
+  main {
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding: 10px;
+    flex: 1;
+    }
+    
+}
+.sidebar {
+  background-color: gainsboro;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex-grow: 0.25;
+  height: 100vh;
+  list-style-type: none;
+  li {
+    color: black;
+    font-weight: 600;
+    padding: 4vw;
+  }
+}
+
+.fab {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 56px;
+  height: 56px;
+  background-color: #007bff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.fab-icon {
+  font-size: 24px;
+  color: white;
+}
