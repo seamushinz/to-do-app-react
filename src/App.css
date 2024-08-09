@@ -6,38 +6,42 @@
   display: flex;
   flex-direction: row;
   main {
-    background-color: #282c34;
+    background-color: rgba(252, 250, 242, 0.336);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: gray;
     padding: 16px;
     flex: 1;
     }
-    
+    h1{
+      color: black;
+    }
 }
 .sidebar {
-  background-color: gainsboro;
+  background-color: rgb(235, 235, 235);
+  border: #007bff;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   flex-grow: 0.25;
   height: 100vh;
-  width: 2vw;
+  width: 10px;
   list-style-type: none;
   li {
     color: black;
     font-weight: 600;
     font-size: larger;
     padding: 16px;
-    padding-right: 100%;
-    transition: background-color 0.2s;
-    border-radius: 10%;
+    width: 100%;
+    transition: background-color 0.15s;
+    border-radius: 8%;
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);
       cursor: pointer;
+      width: 100%;
     }
   }
 }
