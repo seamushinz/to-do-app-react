@@ -1,15 +1,20 @@
 export let startNextId = 0;
 
-export const startingUnfinishedListItems = [
-  { id: '1', text: 'Learn React', completed: false },
-  { id: '2', text: 'Profit!', completed: false }
+const TaskCategory = {
+  INBOX: "Inbox",
+  TODAY: "Today",
+  ANYTIME: "Anytime",
+  SOMEDAY: "Someday",
+};
+
+export const tasks = [
+  { id: '1', text: 'Learn React', completed: false , category : TaskCategory.TODAY},
+  { id: '2', text: 'inbox task!', completed: false, category : TaskCategory.INBOX },
+  { id: '3', text: 'a today task!', completed: false, category : TaskCategory.TODAY },
+  { id: '4', text: 'ill do this anytime!', completed: false, category : TaskCategory.ANYTIME },
+  { id: '5', text: 'someday ill get around to it!', completed: false, category : TaskCategory.SOMEDAY }
 ];
 
-export var startingCompletedListItems = [
-  { id: '4', text: 'Build a To-Do App'},
-  { id: '5', text: 'pee pee poo poo!' },
-  { id: '6', text: 'pee pee poo poo!' }
-];
 startNextId = 7;
 export const sidebarItems = [
   {id: '1', text: 'Inbox'},

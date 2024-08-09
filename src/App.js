@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import { startingUnfinishedListItems, startingCompletedListItems, sidebarItems , startNextId} from './data';
-import {useState} from 'react';
+import { tasks, sidebarItems , startNextId} from './data';
+import {useState, useEffect} from 'react';
 
 let nextId = startNextId+1
 
@@ -10,8 +10,9 @@ function ToDo({toDoData}) {
   return <li key={toDoData.id}>{text}</li>;
 }
 
-function ToDoList({listArray}) {
-  const listItems = listArray.map(item =>
+function ToDoList({listArray, category}) {
+  const filteredListArray = listArray.filter(item => item.category === category);
+  const listItems = filteredListArray.map(item =>
      <ToDo toDoData={item} />);
   return (
     <ul>
@@ -41,7 +42,7 @@ function FabButton({onClick}) {
 
 
 export default function App() {
-  const [unfinishedListItems, setUnfinishedItems] = useState(startingUnfinishedListItems);
+  const [unfinishedListItems, setUnfinishedItems] = useState(tasks);
   const handleFabClick = () => {
     setUnfinishedItems([...unfinishedListItems, { id: nextId++, text : "awesome!" + nextId}])
   };
