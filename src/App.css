@@ -17,8 +17,10 @@
     }
     h1{
       color: black;
+      font-size:calc(16px + 4vmin)
     }
 }
+
 .sidebar {
   background-color: rgb(235, 235, 235);
   border: #007bff;
@@ -57,11 +59,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0px 32px rgba(24, 67, 209, 0.5);
   cursor: pointer;
 }
 
 .fab-icon {
   font-size: 24px;
   color: white;
+}
+
+.toDoCreationField input {
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  padding: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }

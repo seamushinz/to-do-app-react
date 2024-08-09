@@ -1,9 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import { tasks, sidebarItems , startNextId, TaskCategory} from './data';
-import {useState, useEffect} from 'react';
-
-let nextId = startNextId+1
+import FabWithTextField from './FabWithTextField';
+import { toDos, sidebarItems, TaskCategory, saveToDos} from './data';
+import {useState, useEffect, useRef} from 'react';
 
 function ToDo({toDoData}) {
   const text = toDoData.text;
@@ -26,7 +25,6 @@ function ToDoList({listArray, category}) {
 }
 
 function Sidebar({sidebarArray,clickHandler}) {
-
   const sidebarItems = sidebarArray.map(item =>
     <li key={item.id} className="sidebarItem" onClick={() => clickHandler(item.category)}>{item.category}</li>
   );
@@ -37,35 +35,23 @@ function Sidebar({sidebarArray,clickHandler}) {
   );
 }
 
-function FabButton({onClick}) {
-  return (
-    <div className="fab" onClick={onClick}>
-      <span className="fab-icon">+</span>
-    </div>
-  );
-}
 
 export default function App() {
-  const [listItems, setListItems] = useState(tasks);
+  const [listItems, setListItems] = useState(toDos);
   const [currentList, setCurrentList] = useState(TaskCategory.INBOX);
   
   const handleCurrentListChange = (newList) => {
     setCurrentList(newList);
   };
 
-  const handleFabClick = () => {
-    setListItems([...listItems, { id: nextId++, text : "awesome!" + nextId}])
-  };
-
-
   return (
     <div className="App">
       <Sidebar clickHandler={handleCurrentListChange}sidebarArray={sidebarItems}/>
       <main>
-      <h2>{currentList}</h2>
+      <h1>{currentList}</h1>
         <ToDoList className="toDoList" listArray={listItems} category={currentList}/>
       </main>
-      <FabButton onClick={handleFabClick} />
+      <FabWithTextField setListItems = {setListItems} listArray={listItems}/>
     </div>
   );
 }

@@ -1,5 +1,3 @@
-export let startNextId = 0;
-
 export const TaskCategory = {
   INBOX: "Inbox",
   ANYTIME: "Anytime",
@@ -8,15 +6,25 @@ export const TaskCategory = {
   TRASH : "Trash"
 };
 
-export const tasks = [
-  { id: '1', text: 'Learn React' , category : TaskCategory.INBOX},
-  { id: '2', text: 'inbox task!', category : TaskCategory.INBOX },
-  { id: '3', text: 'another inbox task!', category : TaskCategory.INBOX },
-  { id: '4', text: 'ill do this anytime!', category : TaskCategory.ANYTIME },
-  { id: '5', text: 'someday ill get around to it!', category : TaskCategory.SOMEDAY }
+export class toDo {
+  // Static variable (property)
+  static nextId = 0;
+  constructor(text,category) {
+    toDo.nextId++
+    this.id = toDo.nextId
+    this.text = text;
+    this.category = category;
+  }
+}
+
+export const toDos = [
+  new toDo('Learn React', TaskCategory.INBOX),
+  new toDo('inbox task!', TaskCategory.INBOX),
+  new toDo('another inbox task!', TaskCategory.INBOX),
+  new toDo('ill do this anytime!', TaskCategory.ANYTIME),
+  new toDo('someday ill get around to it!', TaskCategory.SOMEDAY)
 ];
 
-startNextId = 7;
 export const sidebarItems = [
   {id: '1', category: TaskCategory.INBOX},
   {id: '2', category: TaskCategory.ANYTIME},
@@ -24,3 +32,14 @@ export const sidebarItems = [
   {id: '4', category: TaskCategory.COMPLETED},
   {id: '5', category: TaskCategory.TRASH}
 ];
+
+
+export function saveToDos(){
+  const todosJson = JSON.stringify(toDos)
+  localStorage.setItem("toDos",todosJson)
+}
+
+export function getToDos(){
+  const toDos = localStorage.getItem("toDos") || "[]";
+  return JSON.parse(toDos)
+}
