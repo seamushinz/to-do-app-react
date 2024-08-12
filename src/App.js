@@ -38,20 +38,20 @@ function Sidebar({sidebarArray,clickHandler}) {
 
 export default function App() {
   const [listItems, setListItems] = useState(toDos);
-  const [currentList, setCurrentList] = useState(TaskCategory.INBOX);
+  const [category, setCategory] = useState(TaskCategory.INBOX);
   
   const handleCurrentListChange = (newList) => {
-    setCurrentList(newList);
+    setCategory(newList);
   };
 
   return (
     <div className="App">
       <Sidebar clickHandler={handleCurrentListChange}sidebarArray={sidebarItems}/>
       <main>
-      <h1>{currentList}</h1>
-        <ToDoList className="toDoList" listArray={listItems} category={currentList}/>
+      <h1>{category}</h1>
+        <ToDoList className="toDoList" listArray={listItems} category={category}/>
       </main>
-      <FabWithTextField setListItems = {setListItems} listArray={listItems}/>
+      <FabWithTextField setListItems = {setListItems} listArray={listItems} currentCategory={category}/>
     </div>
   );
 }
