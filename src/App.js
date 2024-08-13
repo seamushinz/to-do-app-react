@@ -2,23 +2,29 @@ import logo from './logo.svg';
 import './App.css';
 import FabWithTextField from './FabWithTextField';
 import { toDos, sidebarItems, TaskCategory, saveToDos} from './data';
-import {useState, useEffect, useRef} from 'react';
+import {useState} from 'react';
 
 function ToDo({toDoData}) {
   const text = toDoData.text;
+  const handleClickToDoMarkDone = () => {
+  //add to-do completion
+  }
   return (
-  <li key={toDoData.id}>
-    {text}
-  </li>
+    <div className='toDo' key={toDoData.id}>
+      <input className="toDoMarkDoneButton" type='button' onClick={handleClickToDoMarkDone}></input>
+      <li className='toDoText'>
+        {text}
+      </li>
+    </div>
   );
 }
-
+//for some reason says each child doesn't have key, each should todo list item should have a key though...
 function ToDoList({listArray, category}) {
   const filteredListArray = listArray.filter(item => item.category === category);
   const listItems = filteredListArray.map(item =>
      <ToDo toDoData={item} />);
   return (
-    <ul>
+    <ul className='toDoList'>
       {listItems}
     </ul>
   );
@@ -43,6 +49,8 @@ export default function App() {
   const handleCurrentListChange = (newList) => {
     setCategory(newList);
   };
+
+
 
   return (
     <div className="App">

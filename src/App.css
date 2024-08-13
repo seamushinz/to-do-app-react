@@ -78,3 +78,19 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
+
+.toDo {
+  list-style-type: none;
+  display: flex;
+  input {
+    padding: 4px;
+    margin: 4px;
+    width: 28px;
+    background-color: rgba(117, 178, 228, 0.336);;
+    border-color: #007bff;
+    border-radius: 6px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

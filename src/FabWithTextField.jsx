@@ -10,10 +10,9 @@ function FabButton({onClick,textInputVisible}) {
   );
 }
 
-const ToDoCreationField = ({ isVisible, onClose }) => {
+const ToDoCreationField = ({isVisible,onClose}) => {
   //hold text in text field in ref so it doesnt re-render
   const textFieldRef = useRef(null);
-  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => { //runs this function when isVisible or onClose changes values
     const handleClickOutside = (event) => {
@@ -22,17 +21,25 @@ const ToDoCreationField = ({ isVisible, onClose }) => {
           !textFieldRef.current.contains(event.target) &&
           !event.target.classList.contains('fab') &&
           !event.target.classList.contains('fab-icon')) {
-        onClose("poo",true);
+        onClose();
       }
+    };
+
+    const handleEnterKeyPressed = (event) => {
+        if (event.key === 'Enter') {
+          onClose();
+        }
     };
 
     if (isVisible) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEnterKeyPressed);
     }
     
     //runs during the cleanup phase, AKA when component removed from DOM or if any of the dependencies in the useEffect’s dependency array ([isVisible, onClose]) change, the cleanup function runs before the useEffect is executed again with the new values
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEnterKeyPressed);
     };
   }, [isVisible, onClose]);
 
@@ -54,18 +61,25 @@ export default function FabWithTextField({setListItems,listArray,currentCategory
   const [isTextFieldVisible, setIsTextFieldVisible] = useState(false);
   //const [toDoText, setToDoText] = useState('');
 
+  const addListItems = () => {
+    setListItems([...listArray, new toDo(document.getElementById("toDoTextInput").value, currentCategory)])
+  }
+
   const handleFabClick = () => {
     setIsTextFieldVisible(!isTextFieldVisible);
     //make a new todo
     if (isTextFieldVisible && document.getElementById("toDoTextInput").value != "")
     {//idk if theres a better way to do this
-      setListItems([...listArray, new toDo(document.getElementById("toDoTextInput").value, currentCategory)])
+      addListItems()
     }
   };
 
-  const handleCloseTextField = (text,pressedDone) => {
+  const handleCloseTextField = () => {
     setIsTextFieldVisible(false);
-    //if (pressedDone) setToDoText(text);
+    if (document.getElementById("toDoTextInput").value != "")
+      {//idk if theres a better way to do this
+        addListItems();
+      }
   };
   return (
     <div>
