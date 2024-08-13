@@ -1,10 +1,11 @@
 # A stripped down react clone of things from culturedCode
 
 Goal: Learn react and web development essentials, with a very basic program
+
 Features: Different lists for your to-dos, a quick and simple to-do creation, and easy 1-click to-do completion
 
 [things 3](https://culturedcode.com/things/)
-## Getting Started with Create React App
+## Made with Create React App :(
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
