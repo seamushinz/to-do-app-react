@@ -13,6 +13,7 @@ function FabButton({onClick,textInputVisible}) {
 const ToDoCreationField = ({isVisible,onClose}) => {
   //hold text in text field in ref so it doesnt re-render
   const textFieldRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => { //runs this function when isVisible or onClose changes values
     const handleClickOutside = (event) => {
@@ -34,6 +35,9 @@ const ToDoCreationField = ({isVisible,onClose}) => {
     if (isVisible) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleEnterKeyPressed);
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
     }
     
     //runs during the cleanup phase, AKA when component removed from DOM or if any of the dependencies in the useEffect’s dependency array ([isVisible, onClose]) change, the cleanup function runs before the useEffect is executed again with the new values
@@ -52,7 +56,7 @@ const ToDoCreationField = ({isVisible,onClose}) => {
     <div
       ref={textFieldRef}
       className='toDoCreationField'>
-      <input type="text" id="toDoTextInput" placeholder="Enter To-Do..." />
+      <input ref = {inputRef} type="text" id="toDoTextInput" placeholder="Enter To-Do..." />
     </div>
   );
 };

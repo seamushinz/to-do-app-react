@@ -1,17 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import FabWithTextField from './FabWithTextField';
-import { toDos, sidebarItems, TaskCategory, saveToDos} from './data';
+import { toDos, sidebarItems, TaskCategory, saveToDos, toDo} from './data';
 import {useState} from 'react';
 
 function ToDo({toDoData}) {
   const text = toDoData.text;
-  const handleClickToDoMarkDone = () => {
-  //add to-do completion
-  }
   return (
-    <div className='toDo' key={toDoData.id}>
-      <input className="toDoMarkDoneButton" type='button' onClick={handleClickToDoMarkDone}></input>
+    <div>
       <li className='toDoText'>
         {text}
       </li>
@@ -19,10 +15,24 @@ function ToDo({toDoData}) {
   );
 }
 //for some reason says each child doesn't have key, each should todo list item should have a key though...
-function ToDoList({listArray, category}) {
+function ToDoList({listArray, category, setListItems}) {
   const filteredListArray = listArray.filter(item => item.category === category);
   const listItems = filteredListArray.map(item =>
-     <ToDo toDoData={item} />);
+    <div className='toDo' key={item.id}>
+      <input className="toDoMarkDoneButton" type='button' onClick={
+        () => {
+        item.COMPLETED = !item.COMPLETED;
+        if (item.COMPLETED) {
+          item.category = TaskCategory.COMPLETED;
+        }else{
+          console.log("marked as not completed");
+        }
+        setListItems([...listArray]);
+        }
+        }></input>
+      <ToDo toDoData={item} setListItems={setListItems} listItems/>
+     </div>
+    );
   return (
     <ul className='toDoList'>
       {listItems}
@@ -50,14 +60,12 @@ export default function App() {
     setCategory(newList);
   };
 
-
-
   return (
     <div className="App">
       <Sidebar clickHandler={handleCurrentListChange}sidebarArray={sidebarItems}/>
       <main>
       <h1>{category}</h1>
-        <ToDoList className="toDoList" listArray={listItems} category={category}/>
+        <ToDoList className="toDoList" listArray={listItems} category={category} setListItems={setListItems}/>
       </main>
       <FabWithTextField setListItems = {setListItems} listArray={listItems} currentCategory={category}/>
     </div>

@@ -11,9 +11,14 @@ export class toDo {
   static nextId = 0;
   constructor(text,category) {
     toDo.nextId++
-    this.id = toDo.nextId
+    this.id = crypto.randomUUID();
     this.text = text;
     this.category = category;
+    if (this.category == TaskCategory.COMPLETED) {
+      this.COMPLETED = true;
+    }else{
+      this.COMPLETED = false;
+    }
   }
 }
 
